@@ -5,7 +5,7 @@ service:
   name: a-service
   namespace: practice-helm
   server:
-    port: 80
+    port: 8080
     servlet:
       contextPath: /a-path
   config:
