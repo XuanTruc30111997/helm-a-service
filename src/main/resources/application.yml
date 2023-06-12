@@ -1,0 +1,47 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /a-path
+
+spring:
+  application:
+    name: a-service
+#  profiles:
+#    active: local
+#  cloud:
+#    kubernetes:
+#      config:
+#        enabled: true
+#      discovery:
+#        all-namespace: false
+#        namespaces:
+#          - practice-helm
+  endpoints:
+    bHost: "http://localhost:8081/b-path"
+    cHost: "http://localhost:8082/c-path"
+
+management:
+  endpoint:
+    health:
+      enabled: true
+    info:
+      enabled: true
+    restart:
+      enabled: true
+---
+spring:
+  config:
+    activate:
+      on-profile: local
+  endpoints:
+    bHost: "http://localhost:8081/b-path"
+    cHost: "http://localhost:8082/c-path"
+
+---
+spring:
+  config:
+    activate:
+      on-profile: dev
+  endpoints:
+    bHost: "http://b-service:8081/b-path"
+    cHost: "http://c-service:8082/c-path"

@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: a-service
+  namespace: practice-helm
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: a-service
+  template:
+    metadata:
+      labels:
+        app: a-service
+    spec:
+      containers:
+        - name: a-service
+          image: trucnguyen301197/helm-a-service:1.1.2
+          ports:
+            - containerPort: 8080
