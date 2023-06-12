@@ -1,8 +1,8 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: a-service
-  namespace: practice-helm
+  name: {{ .Chart.Name }}
+  namespace: {{ .Values.service.namespace }}
 spec:
   rules:
     - host: practice-helm.demo
@@ -12,6 +12,6 @@ spec:
             pathType: Prefix
             backend:
               service:
-                name: a-service
+                name: {{ .Chart.Name }}
                 port:
-                  number: 8080
+                  number: {{ .Values.service.server.port }}
