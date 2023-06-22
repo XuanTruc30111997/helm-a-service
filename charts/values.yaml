@@ -5,13 +5,13 @@ service:
   name: a-service
   namespace: practice-helm
   server:
-    port: 8080
+    port: 80
     servlet:
       contextPath: /a-path
   config:
     import: kubernetes
   endpoints:
-    bHost: "http://b-service:8081/b-path"
+    bHost: "http://b-service:80/b-path"
     cHost: "http://c-service:8082/c-path"
   management:
     endpoint:
@@ -21,6 +21,15 @@ service:
         enabled: true
       restart:
         enabled: true
+  readinessProbe:
+    successThreshold: 3
+    initialDelaySeconds: 40
+    failureThreshold: 3
+  livenessProbe:
+    initialDelaySeconds: 40
+    periodSeconds: 20
+    failureThreshold: 3
+  restartPolicy: Always
 
 replications:
   desire: 1
