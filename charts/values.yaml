@@ -23,10 +23,10 @@ service:
         enabled: true
   readinessProbe:
     successThreshold: 3
-    initialDelaySeconds: 40
+    initialDelaySeconds: 140
     failureThreshold: 3
   livenessProbe:
-    initialDelaySeconds: 40
+    initialDelaySeconds: 140
     periodSeconds: 20
     failureThreshold: 3
   restartPolicy: Always
